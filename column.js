@@ -4,6 +4,7 @@ class Column {
         this.y=y;
         this.width=width;
         this.height=height;
+        this.queue=[];
     }
 
     draw(ctx){

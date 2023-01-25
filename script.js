@@ -18,10 +18,21 @@ const maxColumnHeight=200
 //display all the value of canvas in deff location
 for(let i=0; i<array.length; i++){
     const x = i*spacing+spacing/2+margin;
-    const y = myCanvas.height-margin;
-    const width = spacing-3;
-    const height= (myCanvas.height-margin*2)*array[i];
+    const y = myCanvas.height-margin-i*3;
+    const width = spacing-4;
+    const height=maxColumnHeight*array[i];
     cols[i] = new Column(x,y,width,height);
-    cols[i].draw(ctx);
+    // cols[i].draw(ctx);
+}
+
+//animate frames
+animate()
+
+function animate(){
+    ctx.clearRect(0,0,myCanvas.width,myCanvas.height)
+    for(let i=0; i<cols.length;i++){
+        cols[i].draw(ctx)
+    }
+    requestAnimationFrame(animate)
 }
 
