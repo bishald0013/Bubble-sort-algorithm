@@ -7,7 +7,7 @@ class Column {
         this.queue=[];
     }
 
-    moveTo(loc,frameCount=100){
+    moveTo(loc,frameCount=20){
         for(let i=0; i<frameCount ;i++){
             const t=i/frameCount;
             this.queue.push({
