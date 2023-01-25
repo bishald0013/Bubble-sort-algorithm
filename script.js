@@ -10,7 +10,6 @@ for(let i=0; i<n; i++){
 
 const cols = []
 const spacing = (myCanvas.width-margin*2)/n;
-console.log(spacing)
 const ctx = myCanvas.getContext('2d');
 
 const maxColumnHeight=200
@@ -25,6 +24,8 @@ for(let i=0; i<array.length; i++){
     // cols[i].draw(ctx);
 }
 
+let move=bubbleSort(array)
+console.log(move)
 
 animate()
 
@@ -33,21 +34,22 @@ function bubbleSort(){
     const moves = []
     do {
         var swapped=false;
-        for(let i=0;i<array.length;i++){
+        for(let i=1;i<array.length;i++){
             if(array[i-1]>array[i]){
-                swapped=true
+                swapped=true;
                 [array[i-1],array[i]]=[array[i],array[i-1]];
                 moves.push(
                     {indices:[i-1,i],swap:true}
-                )
+                );
             }else{
                 moves.push(
                     {indices:[i-1,i],swap:false}
-                )
+                );
             }
         }
     } while (swapped);
-    return moves
+
+    return moves;
 }
 
 //animate frames
