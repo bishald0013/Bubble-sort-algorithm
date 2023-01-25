@@ -55,11 +55,12 @@ function bubbleSort(){
 //animate frames
 function animate(){
     ctx.clearRect(0,0,myCanvas.width,myCanvas.height)
+    let changed = false
     for(let i=0; i<cols.length;i++){
-        cols[i].draw(ctx)
+        changed=cols[i].draw(ctx)||changed
     }
 
-    if(moves.length>0){
+    if(!changed && moves.length>0){
         const move=moves.shift()
         const [i,j]=move.indices;
         if(move.swap){
@@ -67,7 +68,7 @@ function animate(){
             cols[j].moveTo(cols[i]);
             [cols[i],cols[j]]=[cols[j],cols[i]];
         }else{
-            
+
         }
     }
 

@@ -18,10 +18,12 @@ class Column {
     }
 
     draw(ctx){
+        let changed=false
         if(this.queue.length>0){
             const {x,y}=this.queue.shift();
             this.x=x;
             this.y=y;
+            changed=true
         }
         const left=this.x-this.width/2;
         const top=this.y-this.height;
@@ -41,5 +43,6 @@ class Column {
         ctx.fill();
         ctx.stroke();
 
+        return changed
     }
 }
