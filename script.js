@@ -10,6 +10,8 @@ const spacing = (myCanvas.width - margin * 2) / n
 const ctx = myCanvas.getContext('2d')
 const maxColumnHeight = 200
 
+init()
+
 function init() {
   for (let i = 0; i < n; i++) {
     array[i] = Math.random()
@@ -68,9 +70,11 @@ function animate() {
     const [i, j] = move.indices
     if (move.swap) {
       cols[i].moveTo(cols[j])
-      cols[j].moveTo(cols[i], -1)
-      ;[cols[i], cols[j]] = [cols[j], cols[i]]
+      cols[j].moveTo(cols[i], -1);
+      [cols[i], cols[j]] = [cols[j], cols[i]]
     } else {
+        cols[i].jump();
+        cols[j].jump();
     }
   }
 
