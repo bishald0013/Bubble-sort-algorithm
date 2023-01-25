@@ -5,6 +5,11 @@ class Column {
         this.width=width;
         this.height=height;
         this.queue=[];
+        this.color={
+            r:132,
+            g:210,
+            b:195
+        }
     }
 
     moveTo(loc,yOffset=1,frameCount=20){
@@ -14,7 +19,10 @@ class Column {
             this.queue.push({
                 x:lerp(this.x,loc.x,t),
                 y:lerp(this.y,loc.y,t)+
-                    u*this.width/2*yOffset
+                    u*this.width/2*yOffset,
+                r:lerp(255,0,u),
+                g:lerp(198,0,u),
+                b:lerp(211,0,u),
             })
         }
     }
@@ -25,7 +33,10 @@ class Column {
             const u=Math.sin(t*Math.PI);
             this.queue.push({
                 x:this.x,
-                y:this.y-u*this.width
+                y:this.y-u*this.width,
+                r:lerp(235,0,u),
+                g:lerp(69,0,u),
+                b:lerp(95,0,u),
             })
         }
     }
@@ -33,9 +44,10 @@ class Column {
     draw(ctx){
         let changed=false
         if(this.queue.length>0){
-            const {x,y}=this.queue.shift();
+            const {x,y,r,g,b}=this.queue.shift();
             this.x=x;
             this.y=y;
+            this.color={r,g,b}
             changed=true
         }
         const left=this.x-this.width/2;
@@ -43,7 +55,8 @@ class Column {
         const right = this.x+this.width/2
         
         ctx.beginPath();
-        ctx.fillStyle="rgb(150,150,150)"
+        const {r,g,b}=this.color
+        ctx.fillStyle=`rgb(${r},${g},${b})`
         ctx.moveTo(left,top)
         ctx.lineTo(left,this.y)
         ctx.ellipse(this.x,this.y,
