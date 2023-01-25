@@ -15,6 +15,15 @@ class Column {
         ctx.fillStyle="rgb(150,150,150)"
         ctx.moveTo(left,top)
         ctx.lineTo(left,this.y)
-        ctx.ellipse(this.x,this.y)
+        ctx.ellipse(this.x,this.y,
+            this.width/2,this.width/4,0,
+        Math.PI,Math.PI*2,true);
+        ctx.lineTo(right,top);
+        ctx.ellipse(this.x,top,
+            this.width/2,this.width/4,0,
+            0,Math.PI*2,true);
+        ctx.fill();
+        ctx.stroke();
+
     }
 }
