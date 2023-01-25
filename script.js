@@ -25,9 +25,23 @@ for(let i=0; i<array.length; i++){
     // cols[i].draw(ctx);
 }
 
-//animate frames
+
 animate()
 
+//bubble-sort algorithm
+function bubbleSort(){
+    do {
+        var swapped=false;
+        for(let i=0;i<array.length;i++){
+            if(array[i-1]>array[i]){
+                swapped=true
+                [array[i-1],array[i]]=[array[i],array[i-1]]
+            }
+        }
+    } while (swapped);
+}
+
+//animate frames
 function animate(){
     ctx.clearRect(0,0,myCanvas.width,myCanvas.height)
     for(let i=0; i<cols.length;i++){
