@@ -24,8 +24,8 @@ for(let i=0; i<array.length; i++){
     // cols[i].draw(ctx);
 }
 
-let move=bubbleSort(array)
-console.log(move)
+let moves=bubbleSort(array)
+console.log(moves)
 
 animate()
 
@@ -58,6 +58,19 @@ function animate(){
     for(let i=0; i<cols.length;i++){
         cols[i].draw(ctx)
     }
+
+    if(moves.length>0){
+        const move=moves.shift()
+        const [i,j]=move.indices;
+        if(move.swap){
+            cols[i].moveTo(cols[j]);
+            cols[j].moveTo(cols[i]);
+            [cols[i],cols[j]]=[cols[j],cols[i]];
+        }else{
+            
+        }
+    }
+
     requestAnimationFrame(animate)
 }
 
